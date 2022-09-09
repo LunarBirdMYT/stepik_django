@@ -1,1 +1,9 @@
-Hello blog!
+<h1>Blod</h1>
+
+{% for blog in blogs %}
+
+  <h2>{{ blog.title }}</h2>
+  <h5>{{ blog.created }}</h5>
+  <p>{{ blog.description }}</p>
+
+{% endfor %}
