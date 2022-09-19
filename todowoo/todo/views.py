@@ -1,10 +1,12 @@
 from django.shortcuts import render, redirect
-from django.contrib.auth import login
-from django.contrib.auth.forms import UserCreationForm
+from django.contrib.auth import authenticate, login, logout
+from django.contrib.auth.forms import AuthenticationForm, UserCreationForm
 from django.contrib.auth.models import User
 from django.db import IntegrityError
 
 
+def home(request):
+    return render(request, 'todo/home.html')
 
 def signupuser(request):
     if request.method == 'POST':
@@ -31,6 +33,23 @@ def signupuser(request):
                 'error': 'Имя пользователя уже используется. Задайте новое.'}
                 )
     return render(request, 'todo/singupuser.html', {'form': UserCreationForm()})
+
+
+def loginuser(request):
+    if request.method == 'POST':
+        user = authenticate(request, username=request.POST['username'], password=request.POST['password'])
+        if user is None:
+            return render(request, 'todo/loginuser.html', {'form': AuthenticationForm(),
+            'error': 'Пароль не верный или пользователя не существует.'})
+        login(request, user)
+        return redirect('currenttodos')
+    return render(request, 'todo/loginuser.html', {'form': AuthenticationForm()})
+
+
+def logoutuser(request):
+    if request.method == 'POST':
+        logout(request)
+        return redirect('home')
 
 
 def currenttodos(request):

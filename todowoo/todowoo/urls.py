@@ -21,6 +21,9 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     # Auth
     path('signup/', views.signupuser, name='signupuser'),
+    path('login/', views.loginuser, name='loginuser'),
+    path('logout/', views.logoutuser, name='logoutuser'),
     # Todo, можно было подключить урлы туду
-    path('current/', views.currenttodos, name='currenttodos')
+    path('', views.home, name='home'),
+    path('current/', views.currenttodos, name='currenttodos'),
 ]
