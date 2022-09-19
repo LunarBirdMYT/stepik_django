@@ -1,7 +1,7 @@
 
 {% if user.is_authenticated %}
 Вы вошли как {{ user.username }}
-<form action="{% url 'logoutuser' %}" method="POST">
+<form action="{% url 'logoutuser' %}" method="post">
   {% csrf_token %}
   <button type="submit">Выйти</button>    
 </form>

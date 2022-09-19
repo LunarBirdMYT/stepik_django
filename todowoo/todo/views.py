@@ -52,5 +52,9 @@ def logoutuser(request):
         return redirect('home')
 
 
+def createtodo(request):
+    return render(request, 'todo/createtodo.html', {'form': AuthenticationForm()})
+
+
 def currenttodos(request):
      return render(request, 'todo/currenttodos.html')
