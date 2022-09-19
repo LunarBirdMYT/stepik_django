@@ -1,5 +1,17 @@
 {% extends 'todo/base.html' %}
 
 {% block content %}
-Регистрация успешна!
+<ul>
+    {% for todo in todos %}
+      {% if todo.important %}
+        <li><b>{{ todo.title }}</b>
+            {% if todo.memo %} - {{ todo.memo }}{% endif %}
+        </li>
+      {% else %}
+        <li>{{ todo.title }}
+            {% if todo.memo %} - {{ todo.memo }}{% endif %}
+        </li>
+      {% endif %}
+    {% endfor %}
+</ul>
 {% endblock %}
